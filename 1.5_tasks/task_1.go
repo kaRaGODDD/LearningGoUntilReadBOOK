@@ -24,7 +24,13 @@ func main() {
         fmt.Fprintf(os.Stderr,"Mistake %v", err)
     }
 
-    io.Pipe 
+    wr, err := io.Copy(os.Stdout, resp.Body)
+    
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Msg %v", err)
+    }
 
+    fmt.Printf("Number of bytes was written: %d", wr)
+    
 }
 
