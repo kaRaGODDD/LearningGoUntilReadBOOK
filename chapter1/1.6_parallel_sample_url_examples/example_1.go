@@ -16,10 +16,7 @@ func fetch(url string, ch chan<- string) {
     if err != nil {
         ch <- fmt.Sprint(err)
         return
-    }
-    nbytes, err := io.Copy(io.Discard, resp.Body)
-    resp.Body.Close()
-    
+    } nbytes, err := io.Copy(io.Discard, resp.Body) resp.Body.Close()
     if err != nil {
         ch <- fmt.Sprintf("while reading %s: %v", url, err)
         return
